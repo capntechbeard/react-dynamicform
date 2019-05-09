@@ -17,7 +17,7 @@ export default class DynamicForm extends React.Component {
     let model = this.props.model;
     let formUI = model.map(m => {
       let key = m.key;
-      let type = m.type;
+      let type = m.type || "text";
       let props = m.props || {};
 
       return (
@@ -25,6 +25,15 @@ export default class DynamicForm extends React.Component {
           <label classNAme="form-label" key={"1" + m.key} htmlFor={m.key}>
             {m.label}
           </label>
+          <input
+            {...props}
+            ref={key => {
+              this[m.key] = key;
+            }}
+            className="form-input"
+            type={type}
+            key={"i" + m.key}
+          />
         </div>
       );
     });
