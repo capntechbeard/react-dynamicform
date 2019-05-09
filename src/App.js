@@ -51,7 +51,7 @@ class App extends Component {
           }}
         />
 
-        <pre style={{ width: "300px" }}>{JSON.stringify(this.state.data)}</pre>
+        {/* <pre style={{ width: "300px" }}>{JSON.stringify(this.state.data)}</pre> */}
       </div>
     );
   }
