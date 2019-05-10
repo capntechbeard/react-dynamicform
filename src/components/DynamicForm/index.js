@@ -13,6 +13,12 @@ export default class DynamicForm extends React.Component {
     if (this.props.onSubmit) this.props.onSubmit(this.state);
   };
 
+  onChange = (e, key) => {
+    this.setState({
+      [key]: this[key].value
+    });
+  };
+
   renderForm = () => {
     let model = this.props.model;
     let formUI = model.map(m => {
@@ -33,6 +39,9 @@ export default class DynamicForm extends React.Component {
             className="form-input"
             type={type}
             key={"i" + m.key}
+            onChange={e => {
+              this.onChange(e, key);
+            }}
           />
         </div>
       );

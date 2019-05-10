@@ -29,6 +29,14 @@ class App extends Component {
     ]
   };
 
+  onSubmit = model => {
+    model.id = +new Date();
+    alert(JSON.stringify(model));
+    this.setState({
+      data: [model, ...this.state.data]
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -51,7 +59,7 @@ class App extends Component {
           }}
         />
 
-        {/* <pre style={{ width: "300px" }}>{JSON.stringify(this.state.data)}</pre> */}
+        <pre style={{ width: "300px" }}>{JSON.stringify(this.state.data)}</pre>
       </div>
     );
   }
