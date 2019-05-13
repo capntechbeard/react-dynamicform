@@ -31,10 +31,19 @@ class App extends Component {
 
   onSubmit = model => {
     model.id = +new Date();
-    alert(JSON.stringify(model));
     this.setState({
       data: [model, ...this.state.data]
     });
+    alert(
+      "Name: " +
+        JSON.stringify(this.state.data[0].name) +
+        "     Age: " +
+        JSON.stringify(this.state.data[0].age) +
+        "     Rating: " +
+        JSON.stringify(this.state.data[0].rating) +
+        "     Qualification: " +
+        JSON.stringify(this.state.data[0].qualification)
+    );
   };
 
   render() {
@@ -59,7 +68,8 @@ class App extends Component {
           }}
         />
 
-        <pre style={{ width: "300px" }}>
+        <pre>
+          <h2>Result 1:</h2>
           {JSON.stringify(this.state.data[0].name)}
           <br />
           {JSON.stringify(this.state.data[0].age)}
@@ -67,6 +77,22 @@ class App extends Component {
           {JSON.stringify(this.state.data[0].rating)}
           <br />
           {JSON.stringify(this.state.data[0].qualification)}
+          <h2>Result 2:</h2>
+          {JSON.stringify(this.state.data[1].name)}
+          <br />
+          {JSON.stringify(this.state.data[1].age)}
+          <br />
+          {JSON.stringify(this.state.data[1].rating)}
+          <br />
+          {JSON.stringify(this.state.data[1].qualification)}
+          <h2>Result 3:</h2>
+          {JSON.stringify(this.state.data[2].name)}
+          <br />
+          {JSON.stringify(this.state.data[2].age)}
+          <br />
+          {JSON.stringify(this.state.data[2].rating)}
+          <br />
+          {JSON.stringify(this.state.data[2].qualification)}
         </pre>
       </div>
     );
