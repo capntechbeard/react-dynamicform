@@ -7,21 +7,21 @@ class App extends Component {
     data: [
       {
         id: 1,
-        name: "a",
+        name: "A",
         age: 29,
         qualification: "B.Com",
         rating: 3
       },
       {
         id: 2,
-        name: "b",
+        name: "B",
         age: 35,
         qualification: "B.Sc",
         rating: 5
       },
       {
         id: 3,
-        name: "c",
+        name: "C",
         age: 42,
         qualification: "B.E",
         rating: 4
@@ -59,7 +59,15 @@ class App extends Component {
           }}
         />
 
-        <pre style={{ width: "300px" }}>{JSON.stringify(this.state.data)}</pre>
+        <pre style={{ width: "300px" }}>
+          {JSON.stringify(this.state.data[0].name)}
+          <br />
+          {JSON.stringify(this.state.data[0].age)}
+          <br />
+          {JSON.stringify(this.state.data[0].rating)}
+          <br />
+          {JSON.stringify(this.state.data[0].qualification)}
+        </pre>
       </div>
     );
   }
