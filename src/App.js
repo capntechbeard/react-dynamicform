@@ -29,6 +29,17 @@ class App extends Component {
     ]
   };
 
+  downloadTxtFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob([document.getElementById("myInput").value], {
+      type: "text/plain"
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.txt";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   onSubmit = model => {
     model.id = +new Date();
     this.setState({
@@ -36,13 +47,16 @@ class App extends Component {
     });
     alert(
       "Name: " +
-        JSON.stringify(this.state.data[0].name) +
+        JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1") +
         "     Age: " +
         JSON.stringify(this.state.data[0].age) +
         "     Rating: " +
         JSON.stringify(this.state.data[0].rating) +
         "     Qualification: " +
-        JSON.stringify(this.state.data[0].qualification)
+        JSON.stringify(this.state.data[0].qualification).replace(
+          /^"(.+)"$/,
+          "$1"
+        )
     );
   };
 
@@ -70,30 +84,42 @@ class App extends Component {
 
         <pre>
           <h2>Result 1:</h2>
-          {JSON.stringify(this.state.data[0].name)}
+          {JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[0].age)}
+          {JSON.stringify(this.state.data[0].age).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[0].rating)}
+          {JSON.stringify(this.state.data[0].rating).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[0].qualification)}
+          {JSON.stringify(this.state.data[0].qualification).replace(
+            /^"(.+)"$/,
+            "$1"
+          )}
           <h2>Result 2:</h2>
-          {JSON.stringify(this.state.data[1].name)}
+          {JSON.stringify(this.state.data[1].name).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[1].age)}
+          {JSON.stringify(this.state.data[1].age).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[1].rating)}
+          {JSON.stringify(this.state.data[1].rating).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[1].qualification)}
+          {JSON.stringify(this.state.data[1].qualification).replace(
+            /^"(.+)"$/,
+            "$1"
+          )}
           <h2>Result 3:</h2>
-          {JSON.stringify(this.state.data[2].name)}
+          {JSON.stringify(this.state.data[2].name).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[2].age)}
+          {JSON.stringify(this.state.data[2].age).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[2].rating)}
+          {JSON.stringify(this.state.data[2].rating).replace(/^"(.+)"$/, "$1")}
           <br />
-          {JSON.stringify(this.state.data[2].qualification)}
+          {JSON.stringify(this.state.data[2].qualification).replace(
+            /^"(.+)"$/,
+            "$1"
+          )}
         </pre>
+
+        <input id="myInput" />
+        <button onClick={this.downloadTxtFile}>Download txt</button>
       </div>
     );
   }
