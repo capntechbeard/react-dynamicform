@@ -31,11 +31,11 @@ class App extends Component {
 
   downloadTxtFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([document.getElementById("myInput").value], {
+    const file = new Blob([JSON.stringify(this.state)], {
       type: "text/plain"
     });
     element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
+    element.download = "myFile.json";
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   };
@@ -117,9 +117,7 @@ class App extends Component {
             "$1"
           )}
         </pre>
-
-        <input id="myInput" />
-        <button onClick={this.downloadTxtFile}>Download txt</button>
+        <button onClick={this.downloadTxtFile}>Download JSON</button>
       </div>
     );
   }
