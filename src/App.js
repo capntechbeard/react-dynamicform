@@ -60,6 +60,26 @@ class App extends Component {
     );
   };
 
+  onSubmitJSON = model => {
+    model.id = +new Date();
+    this.setState({
+      data: [model, ...this.state.data]
+    });
+    alert(
+      "Name: " +
+        JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1") +
+        "     Age: " +
+        JSON.stringify(this.state.data[0].age) +
+        "     Rating: " +
+        JSON.stringify(this.state.data[0].rating) +
+        "     Qualification: " +
+        JSON.stringify(this.state.data[0].qualification).replace(
+          /^"(.+)"$/,
+          "$1"
+        )
+    );
+  };
+
   render() {
     return (
       <div className="App">
@@ -118,6 +138,15 @@ class App extends Component {
           )}
         </pre>
         <button onClick={this.downloadTxtFile}>Download JSON</button>
+        <br />
+        <input id="inputJSON" />
+        <button
+          onClick={model => {
+            this.onSubmit(model);
+          }}
+        >
+          Submit JSON
+        </button>
       </div>
     );
   }
