@@ -61,7 +61,7 @@ class App extends Component {
   };
 
   onSubmitJSON = model => {
-    model.id = +new Date();
+    model.id = document.getElementById("inputJSON");
     this.setState({
       data: [model, ...this.state.data]
     });
