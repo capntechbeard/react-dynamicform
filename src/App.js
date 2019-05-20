@@ -61,7 +61,7 @@ class App extends Component {
   };
 
   onSubmitJSON = model => {
-    model.id = document.getElementById("inputJSON");
+    model.id = +new Date();
     this.setState({
       data: [model, ...this.state.data]
     });
@@ -101,7 +101,14 @@ class App extends Component {
             this.onSubmit(model);
           }}
         />
-
+        <input id="inputJSON" />
+        <button
+          onClick={model => {
+            this.onSubmit(model);
+          }}
+        >
+          Submit JSON
+        </button>
         <pre>
           <h2>Result 1:</h2>
           {JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1")}
@@ -139,14 +146,6 @@ class App extends Component {
         </pre>
         <button onClick={this.downloadTxtFile}>Download JSON</button>
         <br />
-        <input id="inputJSON" />
-        <button
-          onClick={model => {
-            this.onSubmit(model);
-          }}
-        >
-          Submit JSON
-        </button>
       </div>
     );
   }
