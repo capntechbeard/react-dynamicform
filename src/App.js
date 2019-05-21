@@ -3,31 +3,51 @@ import DynamicForm from "./components/DynamicForm";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    data: [
-      {
-        id: 1,
-        name: "A",
-        age: 29,
-        qualification: "B.Com",
-        rating: 3
-      },
-      {
-        id: 2,
-        name: "B",
-        age: 35,
-        qualification: "B.Sc",
-        rating: 5
-      },
-      {
-        id: 3,
-        name: "C",
-        age: 42,
-        qualification: "B.E",
-        rating: 4
-      }
-    ]
-  };
+  // state = {
+  //   data: [
+  //     {
+  //       id: 1,
+  //       name: "A",
+  //       age: 29,
+  //       qualification: "B.Com",
+  //       rating: 3
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "B",
+  //       age: 35,
+  //       qualification: "B.Sc",
+  //       rating: 5
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "C",
+  //       age: 42,
+  //       qualification: "B.E",
+  //       rating: 4
+  //     }
+  //   ]
+  // };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: ""
+    };
+
+    this.updateInput = this.updateInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  updateInput(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  handleSubmit() {
+    console.log("Your input value is: " + this.state.username);
+    //Send state to the server code
+  }
 
   downloadTxtFile = () => {
     const element = document.createElement("a");
@@ -60,30 +80,10 @@ class App extends Component {
     );
   };
 
-  onSubmitJSON = model => {
-    model.id = +new Date();
-    this.setState({
-      data: [model, ...this.state.data]
-    });
-    alert(
-      "Name: " +
-        JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1") +
-        "     Age: " +
-        JSON.stringify(this.state.data[0].age) +
-        "     Rating: " +
-        JSON.stringify(this.state.data[0].rating) +
-        "     Qualification: " +
-        JSON.stringify(this.state.data[0].qualification).replace(
-          /^"(.+)"$/,
-          "$1"
-        )
-    );
-  };
-
   render() {
     return (
       <div className="App">
-        <DynamicForm
+        {/* <DynamicForm
           className="form"
           title="Registration"
           model={[
@@ -101,14 +101,7 @@ class App extends Component {
             this.onSubmit(model);
           }}
         />
-        <input id="inputJSON" />
-        <button
-          onClick={model => {
-            this.onSubmit(model);
-          }}
-        >
-          Submit JSON
-        </button>
+
         <pre>
           <h2>Result 1:</h2>
           {JSON.stringify(this.state.data[0].name).replace(/^"(.+)"$/, "$1")}
@@ -143,9 +136,11 @@ class App extends Component {
             /^"(.+)"$/,
             "$1"
           )}
-        </pre>
+        </pre> */}
         <button onClick={this.downloadTxtFile}>Download JSON</button>
         <br />
+        <input type="text" onChange={this.updateInput} />
+        <input type="submit" onClick={this.handleSubmit} />
       </div>
     );
   }
