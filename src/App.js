@@ -3,50 +3,50 @@ import DynamicForm from "./components/DynamicForm";
 import "./App.css";
 
 class App extends Component {
-  // state = {
-  //   data: [
-  //     {
-  //       id: 1,
-  //       name: "A",
-  //       age: 29,
-  //       qualification: "B.Com",
-  //       rating: 3
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "B",
-  //       age: 35,
-  //       qualification: "B.Sc",
-  //       rating: 5
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "C",
-  //       age: 42,
-  //       qualification: "B.E",
-  //       rating: 4
-  //     }
-  //   ]
-  // };
+  state = {
+    data: [
+      {
+        id: 1,
+        name: "A",
+        age: 29,
+        qualification: "B.Com",
+        rating: 3
+      },
+      {
+        id: 2,
+        name: "B",
+        age: 35,
+        qualification: "B.Sc",
+        rating: 5
+      },
+      {
+        id: 3,
+        name: "C",
+        age: 42,
+        qualification: "B.E",
+        rating: 4
+      }
+    ]
+  };
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: ""
-    };
 
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  checkState() {
+    console.log(App.state);
+  }
+
   updateInput(event) {
-    this.setState({ username: event.target.value });
+    this.setState({ json: event.target.value });
   }
 
   handleSubmit() {
-    console.log("Your input value is: " + this.state.username);
-    //Send state to the server code
+    App.state = this.state.json;
+    console.log(this.state);
   }
 
   downloadTxtFile = () => {
@@ -83,7 +83,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <DynamicForm
+        <DynamicForm
           className="form"
           title="Registration"
           model={[
@@ -136,11 +136,13 @@ class App extends Component {
             /^"(.+)"$/,
             "$1"
           )}
-        </pre> */}
+        </pre>
         <button onClick={this.downloadTxtFile}>Download JSON</button>
         <br />
         <input type="text" onChange={this.updateInput} />
-        <input type="submit" onClick={this.handleSubmit} />
+        <button onClick={this.handleSubmit}>Submit raw JSON</button>
+        <br />
+        <button onClick={this.checkState}>Check State</button>
       </div>
     );
   }
