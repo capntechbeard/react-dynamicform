@@ -36,18 +36,18 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  checkState() {
-    console.log(App.state);
-  }
+  checkState = () => {
+    console.log(this.state);
+  };
 
   updateInput(event) {
     this.setState({ json: event.target.value });
   }
 
-  handleSubmit() {
-    App.state = this.state.json;
+  handleSubmit = () => {
+    this.setState(JSON.parse(this.state.json));
     console.log(this.state);
-  }
+  };
 
   downloadTxtFile = () => {
     const element = document.createElement("a");
@@ -143,6 +143,33 @@ class App extends Component {
         <button onClick={this.handleSubmit}>Submit raw JSON</button>
         <br />
         <button onClick={this.checkState}>Check State</button>
+        <br />
+        <h2>Raw JSON example</h2>
+        <p>{`{
+  "data": [
+    {
+      "id": 1,
+      "name": "D",
+      "age": 60,
+      "qualification": "B.G",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "E",
+      "age": 65,
+      "qualification": "B.N",
+      "rating": 3
+    },
+    {
+      "id": 3,
+      "name": "F",
+      "age": 70,
+      "qualification": "B.Q",
+      "rating": 1
+    }
+  ]
+}`}</p>
       </div>
     );
   }
